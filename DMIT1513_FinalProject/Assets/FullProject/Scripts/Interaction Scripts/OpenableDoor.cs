@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class OpenableDoor : MonoBehaviour, IInteractable
 {
     [Header("Door Setup")]
@@ -19,14 +20,42 @@ public class OpenableDoor : MonoBehaviour, IInteractable
     [Header("Auto Direction")]
     public bool openAwayFromPlayer = true;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip openSound;
+    public AudioClip closeSound;
+    public AudioClip unlockSound;
+    public AudioClip lockedSound;
+    [Range(0f, 1f)]
+    public float openVolume = 1f;
+    [Range(0f, 1f)]
+    public float closeVolume = 1f;
+    [Range(0f, 1f)]
+    public float unlockVolume = 1f;
+    [Range(0f, 1f)]
+    public float lockedVolume = 1f;
+
     private bool isOpen;
     private float targetYRotation;
+
+    private void Awake()
+    {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+    }
 
     private void Start()
     {
         if (doorPivot == null)
         {
             doorPivot = transform;
+        }
+
+        if (audioSource != null)
+        {
+            audioSource.playOnAwake = false;
         }
 
         isOpen = startsOpen;
@@ -61,22 +90,20 @@ public class OpenableDoor : MonoBehaviour, IInteractable
         {
             bool hasRequiredKey = false;
 
-            if (string.IsNullOrWhiteSpace(requiredKeyId))
-            {
-                hasRequiredKey = false;
-            }
-            else if (interactor != null && interactor.inventory != null)
+            if (!string.IsNullOrWhiteSpace(requiredKeyId) && interactor != null && interactor.inventory != null)
             {
                 hasRequiredKey = interactor.inventory.HasKey(requiredKeyId);
             }
 
             if (!hasRequiredKey)
             {
+                PlayClip(lockedSound, lockedVolume);
                 Debug.Log("Door is locked.");
                 return;
             }
 
             isLocked = false;
+            PlayClip(unlockSound, unlockVolume);
             Debug.Log("Unlocked door with key: " + requiredKeyId);
         }
 
@@ -97,7 +124,7 @@ public class OpenableDoor : MonoBehaviour, IInteractable
                 return "Unlock Door";
             }
 
-            return "Locked Door";
+            return "Door is locked";
         }
 
         return isOpen ? "Close Door" : "Open Door";
@@ -105,6 +132,7 @@ public class OpenableDoor : MonoBehaviour, IInteractable
 
     private void ToggleDoor(PlayerInteractor interactor)
     {
+        bool wasOpen = isOpen;
         isOpen = !isOpen;
 
         if (isOpen)
@@ -127,10 +155,27 @@ public class OpenableDoor : MonoBehaviour, IInteractable
             }
 
             targetYRotation = chosenOpenAngle;
+
+            if (!wasOpen)
+            {
+                PlayClip(openSound, openVolume);
+            }
         }
         else
         {
             targetYRotation = closedYRotation;
+            PlayClip(closeSound, closeVolume);
         }
+    }
+
+    private void PlayClip(AudioClip clip, float volume)
+    {
+        if (audioSource == null || clip == null)
+        {
+            return;
+        }
+
+        audioSource.pitch = Random.Range(0.96f, 1.04f);
+        audioSource.PlayOneShot(clip, volume);
     }
 }

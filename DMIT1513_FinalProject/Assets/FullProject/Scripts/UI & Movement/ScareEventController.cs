@@ -10,16 +10,25 @@ public class ScareEventController : MonoBehaviour
     public float timeBetweenScareChecks = 15f;
     [Range(0f, 1f)]
     public float scareIntensity = 0.5f;
+    public float minimumTimeBetweenChecks = 15f;
 
-    [Header("Audio Scares")]
-    public List<AudioSource> whisperSounds = new List<AudioSource>();
-    public List<AudioSource> bangSounds = new List<AudioSource>();
+    [Header("Player Audio")]
+    public AudioSource playerScareAudioSource;
 
-    [Header("Visual Scares")]
-    public List<GameObject> flickerObjects = new List<GameObject>();
-    public List<GameObject> apparitionObjects = new List<GameObject>();
+    [Header("Audio Clips")]
+    public List<AudioClip> whisperClips = new List<AudioClip>();
+    public List<AudioClip> bangClips = new List<AudioClip>();
 
-    Coroutine scareLoop;
+    [Header("Audio Variation")]
+    public bool avoidImmediateRepeat = true;
+    public Vector2 whisperPitchRange = new Vector2(0.95f, 1.05f);
+    public Vector2 bangPitchRange = new Vector2(0.95f, 1.05f);
+    public Vector2 whisperVolumeRange = new Vector2(0.75f, 1f);
+    public Vector2 bangVolumeRange = new Vector2(0.85f, 1f);
+
+    private Coroutine scareLoop;
+    private int lastWhisperIndex = -1;
+    private int lastBangIndex = -1;
 
     void OnEnable()
     {
@@ -31,6 +40,7 @@ public class ScareEventController : MonoBehaviour
         if (scareLoop != null)
         {
             StopCoroutine(scareLoop);
+            scareLoop = null;
         }
     }
 
@@ -38,10 +48,10 @@ public class ScareEventController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(timeBetweenScareChecks);
+            float waitTime = Mathf.Max(minimumTimeBetweenChecks, timeBetweenScareChecks);
+            yield return new WaitForSeconds(waitTime);
 
-            float roll = Random.value;
-            if (roll <= scareChance)
+            if (Random.value <= scareChance)
             {
                 TriggerRandomScare();
             }
@@ -50,58 +60,144 @@ public class ScareEventController : MonoBehaviour
 
     public void TriggerRandomScare()
     {
-        int scareType = Random.Range(0, 4);
+        List<int> availableTypes = new List<int>();
 
-        if (scareType == 0)
+        bool canPlayPlayerAudio = playerScareAudioSource != null && !playerScareAudioSource.isPlaying;
+
+        if (HasValidClips(whisperClips) && canPlayPlayerAudio)
         {
-            PlayRandomAudio(whisperSounds);
+            availableTypes.Add(0);
         }
-        else if (scareType == 1)
+
+        if (HasValidClips(bangClips) && canPlayPlayerAudio)
         {
-            PlayRandomAudio(bangSounds);
+            availableTypes.Add(1);
         }
-        else if (scareType == 2)
+
+        if (availableTypes.Count == 0)
         {
-            TriggerRandomVisual(flickerObjects, 0.25f + scareIntensity);
+            return;
+        }
+
+        int chosenType = availableTypes[Random.Range(0, availableTypes.Count)];
+
+        if (chosenType == 0)
+        {
+            PlayRandomClip(whisperClips, ref lastWhisperIndex, whisperPitchRange, whisperVolumeRange);
         }
         else
         {
-            TriggerRandomVisual(apparitionObjects, 0.5f + scareIntensity);
+            PlayRandomClip(bangClips, ref lastBangIndex, bangPitchRange, bangVolumeRange);
         }
     }
 
-    void PlayRandomAudio(List<AudioSource> pool)
+    public void TriggerWhisperScare()
     {
-        if (pool == null || pool.Count == 0)
+        PlayRandomClip(whisperClips, ref lastWhisperIndex, whisperPitchRange, whisperVolumeRange);
+    }
+
+    public void TriggerBangScare()
+    {
+        PlayRandomClip(bangClips, ref lastBangIndex, bangPitchRange, bangVolumeRange);
+    }
+
+    public void TriggerSpecificScare(AudioClip clip, float volume = 1f, float minPitch = 0.95f, float maxPitch = 1.05f)
+    {
+        if (playerScareAudioSource == null || clip == null)
         {
             return;
         }
 
-        int index = Random.Range(0, pool.Count);
-        if (pool[index] != null)
-        {
-            pool[index].Play();
-        }
-    }
-
-    void TriggerRandomVisual(List<GameObject> pool, float activeTime)
-    {
-        if (pool == null || pool.Count == 0)
+        if (playerScareAudioSource.isPlaying)
         {
             return;
         }
 
-        int index = Random.Range(0, pool.Count);
-        if (pool[index] != null)
-        {
-            StartCoroutine(FlashObject(pool[index], activeTime));
-        }
+        playerScareAudioSource.pitch = Random.Range(minPitch, maxPitch);
+        playerScareAudioSource.PlayOneShot(clip, volume);
     }
 
-    IEnumerator FlashObject(GameObject target, float time)
+    bool HasValidClips(List<AudioClip> pool)
     {
-        target.SetActive(true);
-        yield return new WaitForSeconds(time);
-        target.SetActive(false);
+        if (pool == null || pool.Count == 0)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < pool.Count; i++)
+        {
+            if (pool[i] != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void PlayRandomClip(
+        List<AudioClip> pool,
+        ref int lastIndex,
+        Vector2 pitchRange,
+        Vector2 volumeRange)
+    {
+        if (playerScareAudioSource == null || pool == null || pool.Count == 0)
+        {
+            return;
+        }
+
+        if (playerScareAudioSource.isPlaying)
+        {
+            return;
+        }
+
+        int chosenIndex = GetRandomValidIndex(pool, lastIndex);
+        if (chosenIndex < 0)
+        {
+            return;
+        }
+
+        AudioClip clip = pool[chosenIndex];
+        if (clip == null)
+        {
+            return;
+        }
+
+        playerScareAudioSource.pitch = Random.Range(pitchRange.x, pitchRange.y);
+        playerScareAudioSource.PlayOneShot(clip, Random.Range(volumeRange.x, volumeRange.y));
+
+        lastIndex = chosenIndex;
+    }
+
+    int GetRandomValidIndex<T>(List<T> pool, int lastIndex) where T : Object
+    {
+        List<int> validIndices = new List<int>();
+
+        for (int i = 0; i < pool.Count; i++)
+        {
+            if (pool[i] != null)
+            {
+                validIndices.Add(i);
+            }
+        }
+
+        if (validIndices.Count == 0)
+        {
+            return -1;
+        }
+
+        if (!avoidImmediateRepeat || validIndices.Count == 1)
+        {
+            return validIndices[Random.Range(0, validIndices.Count)];
+        }
+
+        int chosenIndex = validIndices[Random.Range(0, validIndices.Count)];
+
+        while (chosenIndex == lastIndex)
+        {
+            chosenIndex = validIndices[Random.Range(0, validIndices.Count)];
+        }
+
+        return chosenIndex;
     }
 }

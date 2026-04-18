@@ -27,6 +27,11 @@ public class FirstPersonLook : MonoBehaviour
     private Quaternion targetPlayerRotation;
     private Quaternion targetCameraRotation;
 
+    void Awake()
+    {
+        mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", mouseSensitivity);
+    }
+
     void OnEnable()
     {
         if (lookAction != null)
@@ -115,8 +120,8 @@ public class FirstPersonLook : MonoBehaviour
             return;
         }
 
-        float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime * 100f;
-        float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime * 100f;
+        float mouseX = lookInput.x * mouseSensitivity;
+        float mouseY = lookInput.y * mouseSensitivity;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -verticalClamp, verticalClamp);
@@ -205,5 +210,17 @@ public class FirstPersonLook : MonoBehaviour
         {
             lookAction.Enable();
         }
+    }
+
+    public void SetSensitivity(float newSensitivity)
+    {
+        mouseSensitivity = newSensitivity;
+        PlayerPrefs.SetFloat("MouseSensitivity", mouseSensitivity);
+        PlayerPrefs.Save();
+    }
+
+    public float GetSensitivity()
+    {
+        return mouseSensitivity;
     }
 }

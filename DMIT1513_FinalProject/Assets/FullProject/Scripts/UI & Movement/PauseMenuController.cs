@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PauseMenuController : MonoBehaviour
 
     [Header("UI")]
     public GameObject pauseMenuUI;
+
+    [Header("Scenes")]
+    public string titleSceneName = "Title";
 
     private bool isPaused = false;
 
@@ -102,8 +106,24 @@ public class PauseMenuController : MonoBehaviour
         return isPaused;
     }
 
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitToTitle()
+    {
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        SceneManager.LoadScene(titleSceneName);
+    }
+
     public void QuitGame()
     {
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
         Application.Quit();
         Debug.Log("Quit Game pressed");
     }

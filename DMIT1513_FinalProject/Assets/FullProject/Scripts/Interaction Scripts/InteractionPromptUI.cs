@@ -11,8 +11,6 @@ public class InteractionPromptUI : MonoBehaviour
 
     [Header("Display")]
     public Sprite keySprite;
-    public string prefixText = "Press";
-    public string suffixText = "to";
 
     void Start()
     {
@@ -45,7 +43,7 @@ public class InteractionPromptUI : MonoBehaviour
         if (promptText != null)
         {
             promptText.enabled = true;
-            promptText.text = prefixText + " " + suffixText + " " + actionText;
+            promptText.text = actionText;
         }
     }
 

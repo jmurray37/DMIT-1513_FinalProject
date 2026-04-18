@@ -27,12 +27,20 @@ public class SimpleZombieAI : MonoBehaviour
     public float stoppingDistance = 1.5f;
     public float patrolPointReachDistance = 1.2f;
 
+    [Header("Attack")]
+    public int attackDamage = 1;
+    public float attackRange = 1.8f;
+    public float attackCooldown = 1.5f;
+    public string attackTriggerName = "Attack";
+
     private NavMeshAgent agent;
     private Animator animator;
+    private PlayerHealth playerHealth;
 
     private bool isChasing;
     private int currentPatrolIndex;
     private float lastTimeSawPlayer = -999f;
+    private float lastAttackTime = -999f;
 
     void Awake()
     {
@@ -45,6 +53,16 @@ public class SimpleZombieAI : MonoBehaviour
         agent.stoppingDistance = stoppingDistance;
         agent.isStopped = true;
         animator.SetFloat("Speed", 0f);
+
+        if (player == null && Camera.main != null)
+        {
+            player = Camera.main.transform.root;
+        }
+
+        if (player != null)
+        {
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
     }
 
     void Update()
@@ -65,6 +83,19 @@ public class SimpleZombieAI : MonoBehaviour
         if (player == null)
         {
             HandleNoPlayer(brightness, currentSpeed);
+            return;
+        }
+
+        if (playerHealth == null)
+        {
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
+
+        if (playerHealth != null && playerHealth.IsDead())
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+            animator.SetFloat("Speed", 0f);
             return;
         }
 
@@ -156,6 +187,20 @@ public class SimpleZombieAI : MonoBehaviour
 
     void HandleChase(float currentSpeed, float distanceToPlayer)
     {
+        if (distanceToPlayer <= attackRange)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+            animator.SetFloat("Speed", 0f);
+
+            Vector3 lookTarget = player.position;
+            lookTarget.y = transform.position.y;
+            transform.LookAt(lookTarget);
+
+            TryAttack();
+            return;
+        }
+
         agent.isStopped = false;
         agent.stoppingDistance = stoppingDistance;
         agent.SetDestination(player.position);
@@ -173,6 +218,28 @@ public class SimpleZombieAI : MonoBehaviour
         }
 
         animator.SetFloat("Speed", normalizedSpeed);
+    }
+
+    void TryAttack()
+    {
+        if (playerHealth == null)
+        {
+            return;
+        }
+
+        if (Time.time < lastAttackTime + attackCooldown)
+        {
+            return;
+        }
+
+        lastAttackTime = Time.time;
+
+        if (!string.IsNullOrWhiteSpace(attackTriggerName))
+        {
+            animator.SetTrigger(attackTriggerName);
+        }
+
+        playerHealth.TakeDamage(attackDamage);
     }
 
     void HandleIdleOrPatrol(float brightness, float currentSpeed)
@@ -247,8 +314,11 @@ public class SimpleZombieAI : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, previewLoseInterestRange);
 
-        Vector3 origin = transform.position + Vector3.up * eyeHeight;
         Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Vector3 origin = transform.position + Vector3.up * eyeHeight;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawSphere(origin, 0.08f);
 
         if (player != null)
@@ -261,7 +331,7 @@ public class SimpleZombieAI : MonoBehaviour
 
         if (patrolPoints != null && patrolPoints.Length > 0)
         {
-            Gizmos.color = Color.cyan;
+            Gizmos.color = Color.blue;
 
             for (int i = 0; i < patrolPoints.Length; i++)
             {
