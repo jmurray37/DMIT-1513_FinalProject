@@ -33,6 +33,9 @@ public class SimpleZombieAI : MonoBehaviour
     public float attackCooldown = 1.5f;
     public string attackTriggerName = "Attack";
 
+    [Header("Animation")]
+    public string speedParameterName = "Speed";
+
     private NavMeshAgent agent;
     private Animator animator;
     private PlayerHealth playerHealth;
@@ -52,7 +55,7 @@ public class SimpleZombieAI : MonoBehaviour
     {
         agent.stoppingDistance = stoppingDistance;
         agent.isStopped = true;
-        animator.SetFloat("Speed", 0f);
+        SetAnimatorSpeed(0f);
 
         if (player == null && Camera.main != null)
         {
@@ -95,7 +98,7 @@ public class SimpleZombieAI : MonoBehaviour
         {
             agent.isStopped = true;
             agent.ResetPath();
-            animator.SetFloat("Speed", 0f);
+            SetAnimatorSpeed(0f);
             return;
         }
 
@@ -181,7 +184,7 @@ public class SimpleZombieAI : MonoBehaviour
         {
             agent.isStopped = true;
             agent.ResetPath();
-            animator.SetFloat("Speed", 0f);
+            SetAnimatorSpeed(0f);
         }
     }
 
@@ -191,7 +194,7 @@ public class SimpleZombieAI : MonoBehaviour
         {
             agent.isStopped = true;
             agent.ResetPath();
-            animator.SetFloat("Speed", 0f);
+            SetAnimatorSpeed(0f);
 
             Vector3 lookTarget = player.position;
             lookTarget.y = transform.position.y;
@@ -217,7 +220,7 @@ public class SimpleZombieAI : MonoBehaviour
             normalizedSpeed = 0f;
         }
 
-        animator.SetFloat("Speed", normalizedSpeed);
+        SetAnimatorSpeed(normalizedSpeed);
     }
 
     void TryAttack()
@@ -234,7 +237,7 @@ public class SimpleZombieAI : MonoBehaviour
 
         lastAttackTime = Time.time;
 
-        if (!string.IsNullOrWhiteSpace(attackTriggerName))
+        if (animator != null && !string.IsNullOrWhiteSpace(attackTriggerName))
         {
             animator.SetTrigger(attackTriggerName);
         }
@@ -252,7 +255,7 @@ public class SimpleZombieAI : MonoBehaviour
         {
             agent.isStopped = true;
             agent.ResetPath();
-            animator.SetFloat("Speed", 0f);
+            SetAnimatorSpeed(0f);
         }
     }
 
@@ -262,7 +265,7 @@ public class SimpleZombieAI : MonoBehaviour
         {
             agent.isStopped = true;
             agent.ResetPath();
-            animator.SetFloat("Speed", 0f);
+            SetAnimatorSpeed(0f);
             return;
         }
 
@@ -271,7 +274,7 @@ public class SimpleZombieAI : MonoBehaviour
         if (patrolTarget == null)
         {
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-            animator.SetFloat("Speed", 0f);
+            SetAnimatorSpeed(0f);
             return;
         }
 
@@ -293,7 +296,15 @@ public class SimpleZombieAI : MonoBehaviour
             normalizedSpeed = currentSpeed / brightSpeed;
         }
 
-        animator.SetFloat("Speed", normalizedSpeed);
+        SetAnimatorSpeed(normalizedSpeed);
+    }
+
+    void SetAnimatorSpeed(float value)
+    {
+        if (animator != null && !string.IsNullOrWhiteSpace(speedParameterName))
+        {
+            animator.SetFloat(speedParameterName, value);
+        }
     }
 
     void OnDrawGizmosSelected()
