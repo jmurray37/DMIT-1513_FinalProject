@@ -1035,10 +1035,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 102472930}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 102472931}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &102472924 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 102472923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &102472925 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
   m_PrefabInstance: {fileID: 102472923}
   m_PrefabAsset: {fileID: 0}
 --- !u!195 &102472926
@@ -1199,6 +1207,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &102472931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102472924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 102472925}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &112570631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605214901766921822, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
@@ -2480,10 +2508,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 327240755}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 327240756}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &327240749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 327240748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &327240750 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
   m_PrefabInstance: {fileID: 327240748}
   m_PrefabAsset: {fileID: 0}
 --- !u!195 &327240751
@@ -2644,6 +2680,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &327240756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327240749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 327240750}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &329139151 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604367122496853544, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
@@ -5717,6 +5773,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.486
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       propertyPath: m_Controller
       value: 
@@ -5731,6 +5795,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 717472072}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 717472075}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &717472071 stripped
 GameObject:
@@ -5791,6 +5858,31 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!4 &717472074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 717472070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &717472075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717472071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 717472074}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &718485542 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604515701644425080, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
@@ -6501,10 +6593,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 792896280}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 792896281}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &792896274 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 792896273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &792896275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
   m_PrefabInstance: {fileID: 792896273}
   m_PrefabAsset: {fileID: 0}
 --- !u!195 &792896276
@@ -6665,6 +6765,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &792896281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792896274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 792896275}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &799325937
 GameObject:
   m_ObjectHideFlags: 0
@@ -7561,10 +7681,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 909867485}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 909867486}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &909867479 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 909867478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &909867480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
   m_PrefabInstance: {fileID: 909867478}
   m_PrefabAsset: {fileID: 0}
 --- !u!195 &909867481
@@ -7725,6 +7853,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &909867486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909867479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 909867480}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &913318260 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604871000558458892, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
@@ -10275,10 +10423,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1264851541}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1264851542}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &1264851535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 1264851534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1264851536 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
   m_PrefabInstance: {fileID: 1264851534}
   m_PrefabAsset: {fileID: 0}
 --- !u!195 &1264851537
@@ -10439,6 +10595,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1264851542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264851535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 1264851536}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &1265291808 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604861635989137730, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
@@ -10745,7 +10921,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1622828412}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1622828414}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+--- !u!4 &1301467839 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 1301467838}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1304430609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
@@ -10803,6 +10987,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1304430612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304430609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 2036558031}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &1306241755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605099067332521200, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
@@ -13044,6 +13248,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1622828414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622828411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 1301467839}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &1624420162
 GameObject:
   m_ObjectHideFlags: 0
@@ -14986,10 +15210,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1909017899}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1909017900}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &1909017893 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 1909017892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1909017894 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
   m_PrefabInstance: {fileID: 1909017892}
   m_PrefabAsset: {fileID: 0}
 --- !u!195 &1909017895
@@ -15150,6 +15382,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1909017900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909017893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 1909017894}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1001 &1911362368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17183,10 +17435,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2012220083}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2012220084}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &2012220077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 2012220076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2012220078 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
   m_PrefabInstance: {fileID: 2012220076}
   m_PrefabAsset: {fileID: 0}
 --- !u!195 &2012220079
@@ -17347,6 +17607,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2012220084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012220077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 2012220078}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &2015141918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8605303636453710722, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
@@ -17638,7 +17918,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1304430610}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1304430612}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+--- !u!4 &2036558031 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 2036558030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2040867279 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604617471601050874, guid: beef3bcde1610f04aa96275436147bb9, type: 3}
@@ -18329,10 +18617,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2113518898}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113518899}
   m_SourcePrefab: {fileID: 100100000, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
 --- !u!1 &2113518892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  m_PrefabInstance: {fileID: 2113518891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2113518893 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
   m_PrefabInstance: {fileID: 2113518891}
   m_PrefabAsset: {fileID: 0}
 --- !u!195 &2113518894
@@ -18493,6 +18789,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2113518899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113518892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ab399fb34a3a41934c578ced9dc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyModelSwapper
+  normalModelRoot: {fileID: 919132149155446097, guid: 8f59aabd58093244a9c43f0ffcafebee, type: 3}
+  normalRenderers: []
+  visualRoot: {fileID: 2113518893}
+  monsterCanPrefab: {fileID: 919132149155446097, guid: 0af1d919694e65449b47b89a2a8ba178, type: 3}
+  canLocalPosition: {x: 0, y: -1, z: 0}
+  canLocalRotation: {x: 0, y: 0, z: 0}
+  canLocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  disableWholeNormalModelRoot: 0
 --- !u!1 &2127328988 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8604588073701022798, guid: beef3bcde1610f04aa96275436147bb9, type: 3}

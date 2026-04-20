@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TitleScreenController : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class TitleScreenController : MonoBehaviour
     public float introBottomPadding = 100f;
     public float introTopPadding = 100f;
 
+    [Header("Fun Mode")]
+    public Toggle scaredOfMonsterToggle;
+
+    private const string ScaredPrefKey = "ScaredOfMonsterMode";
+
     private bool introPlaying = false;
     private RectTransform introRect;
     private RectTransform introPanelRect;
@@ -49,7 +55,25 @@ public class TitleScreenController : MonoBehaviour
             introPanelRect = introPanel.GetComponent<RectTransform>();
         }
 
+        // Load toggle state
+        if (scaredOfMonsterToggle != null)
+        {
+            bool savedValue = PlayerPrefs.GetInt(ScaredPrefKey, 0) == 1;
+            scaredOfMonsterToggle.isOn = savedValue;
+
+            // Hook event
+            scaredOfMonsterToggle.onValueChanged.AddListener(OnScaredOfMonsterChanged);
+        }
+
         ShowMainMenu();
+    }
+
+    void OnDestroy()
+    {
+        if (scaredOfMonsterToggle != null)
+        {
+            scaredOfMonsterToggle.onValueChanged.RemoveListener(OnScaredOfMonsterChanged);
+        }
     }
 
     void Update()
@@ -60,7 +84,6 @@ public class TitleScreenController : MonoBehaviour
             pos.y += introScrollSpeed * Time.deltaTime;
             introRect.anchoredPosition = pos;
 
-            
             if (AnyInputPressedThisFrame())
             {
                 StartGame();
@@ -99,6 +122,19 @@ public class TitleScreenController : MonoBehaviour
         }
 
         return false;
+    }
+
+    void OnScaredOfMonsterChanged(bool isOn)
+    {
+        PlayerPrefs.SetInt(ScaredPrefKey, isOn ? 1 : 0);
+        PlayerPrefs.Save();
+
+        Debug.Log("Scared of Monster Mode: " + isOn);
+    }
+
+    public static bool IsScaredOfMonsterEnabled()
+    {
+        return PlayerPrefs.GetInt(ScaredPrefKey, 0) == 1;
     }
 
     public void ShowMainMenu()
